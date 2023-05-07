@@ -36,12 +36,12 @@ SeederData();
 
 void SeederData()
 {
-    IServiceScopeFactory? scopeFactory= app.Services.GetService<IServiceScopeFactory>();
+    IServiceScopeFactory? scopedFactory = app.Services.GetService<IServiceScopeFactory>();
 
-    using (IServiceScope? scope = scopeFactory.CreateScope())
+    using (IServiceScope? scope = scopedFactory.CreateScope())
     {
-        SeederDb? seederDb = scope.ServiceProvider.GetService<SeederDb>();
-        seederDb?.SeedAsync().Wait();
+        SeederDb? service = scope.ServiceProvider.GetService<SeederDb>();
+        service.SeederAsync().Wait();
     }
 }
 
