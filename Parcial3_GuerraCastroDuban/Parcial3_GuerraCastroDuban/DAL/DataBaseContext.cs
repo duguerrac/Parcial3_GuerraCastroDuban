@@ -15,6 +15,7 @@ namespace Parcial3_GuerraCastroDuban.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Service>().HasIndex(s => s.Name).IsUnique();
             modelBuilder.Entity<Vehicle>().HasIndex("NumberPlate","ServiceId").IsUnique();
             
