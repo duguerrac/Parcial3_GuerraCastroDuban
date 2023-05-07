@@ -1,5 +1,9 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Parcial3_GuerraCastroDuban.DAL;
+using Parcial3_GuerraCastroDuban.DAL.Entities;
+using Parcial3_GuerraCastroDuban.Helpers;
+using Parcial3_GuerraCastroDuban.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +13,22 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataBaseContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
     });
+builder.Services.AddIdentity<User, IdentityRole>(io =>
+{
+    io.User.RequireUniqueEmail=true;
+    io.Password.RequireDigit=false;
+    io.Password.RequiredUniqueChars = 0;
+    io.Password.RequireLowercase=false;
+    io.Password.RequireNonAlphanumeric=false;
+    io.Password.RequireUppercase=false;
+    io.Password.RequiredLength=6;
+
+})
+    .AddEntityFrameworkStores<DataBaseContext>();
 
 builder.Services.AddTransient<SeederDb>();
+
+builder.Services.AddScoped<IUserHelper, UserHelper>();
 
 var app = builder.Build();
 
@@ -41,6 +59,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
