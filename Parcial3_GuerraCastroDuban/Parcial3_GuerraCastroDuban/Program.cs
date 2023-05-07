@@ -29,6 +29,7 @@ builder.Services.AddIdentity<User, IdentityRole>(io =>
 builder.Services.AddTransient<SeederDb>();
 
 builder.Services.AddScoped<IUserHelper, UserHelper>();
+builder.Services.AddScoped<IDropDownListHelper, IDropDownListHelper>();
 
 var app = builder.Build();
 

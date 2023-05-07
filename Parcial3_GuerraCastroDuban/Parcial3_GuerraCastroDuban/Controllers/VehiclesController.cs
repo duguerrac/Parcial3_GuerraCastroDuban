@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using Parcial3_GuerraCastroDuban.DAL.Entities;
 
 namespace Parcial3_GuerraCastroDuban.Controllers
 {
+    [Authorize(Roles = "User")]
     public class VehiclesController : Controller
     {
         private readonly DataBaseContext _context;
