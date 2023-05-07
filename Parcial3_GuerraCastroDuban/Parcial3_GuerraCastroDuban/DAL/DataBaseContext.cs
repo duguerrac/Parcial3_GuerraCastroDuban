@@ -9,6 +9,7 @@ namespace Parcial3_GuerraCastroDuban.DAL
         {
 
         }
-        public DbSet<Services> Services { get; set; }
+        public DbSet<Parcial3_GuerraCastroDuban.DAL.Entities.Services>? Services { get; set; }
+        
     }
 }
