@@ -9,7 +9,17 @@ namespace Parcial3_GuerraCastroDuban.DAL
         {
 
         }
-        public DbSet<Parcial3_GuerraCastroDuban.DAL.Entities.Services>? Services { get; set; }
+        public DbSet<Service>? Services { get; set; }
+        public DbSet<Vehicle>? Vehicles { get; set; }
+        public DbSet<VehicleDetails>? VehicleDetails { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Service>().HasIndex(s => s.Name).IsUnique();
+            modelBuilder.Entity<Vehicle>().HasIndex("NumberPlate","ServiceId").IsUnique();
+            
+        }
+        
         
     }
 }

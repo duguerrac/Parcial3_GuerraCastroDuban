@@ -56,7 +56,7 @@ namespace Parcial3_GuerraCastroDuban.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Price,Id")] Services services)
+        public async Task<IActionResult> Create(Service services)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace Parcial3_GuerraCastroDuban.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Name,Price,Id")] Services services)
+        public async Task<IActionResult> Edit(Guid id, Service services)
         {
             if (id != services.Id)
             {
